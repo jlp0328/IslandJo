@@ -4,13 +4,28 @@ import './node_modules/angular-material/angular-material.css';
 
 import angular from 'angular';
 
-const app = angular.module('islandJo', ['ngMaterial', 'ngSanitize', 'ngMessages', 'ngAnimate'])
+// Components
 
-let mainCtrl = function($scope){
-    $scope.currentNavItem = 'page1';
+import {navigationConfig} from './app/components/navigation/navigation.component';
+import {aboutConfig} from './app/components/about/about.component'
 
-    $scope.goto = function(page) {
-      console.log("Goto " + page);
-};
+// Services
 
-app.controller('MainCtrl', mainCtrl);
+const app = angular.module('islandJo', ['ngMaterial', 'ui.router', 'ngAnimate'])
+
+  app.component('nav', navigationConfig)
+  app.component('about', aboutConfig)
+
+  app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) => {
+
+      $stateProvider.state('home', {
+        url: '/home',
+        template:'<div>Hello</div>'
+      })
+      .state('about', {
+        url: '/about',
+        component: 'about'
+      })
+
+      $urlRouterProvider.otherwise('/home');
+  }])

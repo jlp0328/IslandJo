@@ -8,7 +8,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   entry: {
     bundle: './index.js',
-    vendor: ['angular-material', 'angular-aria', 'angular-animate']
+    vendor: ['angular-material', 'angular-aria', 'angular-animate', '@uirouter/angularjs']
   },
   output: {
     filename: '[name].js',
@@ -71,9 +71,7 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
-    port: 1984,
-    host: "0.0.0.0",
-    disableHostCheck: true
+    port: 9000
   }
-}; 
+};
 
